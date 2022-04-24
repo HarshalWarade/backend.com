@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+    <script
+        src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=C&amp;skin=desert"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <title>Just for backend</title>
+</head>
+
+<body>
+    <div class="mainBg">
+        <h2 class="heading">
+            Backend for you <i class="fa-solid fa-circle-check" style="color: rgb(108, 255, 108);"></i>
+        </h2>
+        <h4 style="margin-top: 30px;">MERN Stack - MongoDB, ExpressJs, ReactJs, NodeJs</h4>
+        <div class="buttonsLinks my-2">
+            <a href="#reactandexpress" class="btn btn-success">Node and Express</a>
+            <a href="#mongo" class="btn btn-primary">Mongo and Mongod</a>
+            <a href="#mongoose" class="btn btn-warning">Mongoose</a>
+            <a href="detail.html" class="btn btn-danger">Detailed Learnings</a>
+        </div>
+    </div>
+    <div class="container my-4" id="reactandexpress">
+        <h2 style="margin-top: 90px; margin-bottom: 30px;">Node and Express</h2>
+        <p>You need to use the following steps to create a specific backend server of a basic begineer level.</p>
+        <hr>
+        <p style="margin-top: 40px;"><b>1]</b> First of all store all the required elements as 'required'.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+            <code class="language-js">
+    const express = require('express');
+    const path = require('path');
+    const fs = require('fs');
+    const app = express();
+    port = 80;</code>
+        </pre>
+
+
+        <hr>
+
+
+        <p style="margin-top: 40px;">
+            <b>2]</b> Install all the required modules (express, pug, nodemon, etc).
+        </p>
+        <pre class="prettyprint">
+    <code class="language">
+    $ npm install express
+    $ npm install pug
+    $ npm install nodemon</code>
+    </pre>
+
+
+        <hr>
+
+        <p style="margin-top: 40px;"><b>3]</b> Try sending a dummy get request to the localhost. Paste the below code
+            and type 'localhost' on your
+            web browser to check the results.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language">
+    app.get("/", (req, res) => {
+        res.status(200).send(`This is a basic get request to the localhost`);
+    });
+    app.listen(port, () => {
+        console.log(`The application is active on port ${port}`);
+    });</code>
+    </pre>
+
+        <hr>
+
+
+        <p style="margin-top: 40px;"><b>4]</b> Setting template engine as pug</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language">
+    app.set('view engine', 'pug');</code>
+    </pre>
+
+
+        <hr>
+        <p style="margin-top: 40px;"><b>5]</b> Setting up the view directory if required.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language">
+    app.set('views', path.join(__dirname, 'views'));</code>
+    </pre>
+
+
+
+        <hr>
+        <p style="margin-top: 40px;"><b>6]</b> Setting up the pug file.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-cyc">
+    html
+    head
+        title= title
+    body
+        h1= message</code>
+    </pre>
+
+
+        <hr>
+
+
+        <p style="margin-top: 40px;"><b>7]</b> Typing pug file endpoints.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language">
+    app.get("/demo", (req, res) =>{
+        res.status(200).render('demo', {title: 'Hey', message: 'Hello there'});
+    });</code>
+    </pre>
+
+
+        <hr>
+
+        <p style="margin-top: 40px;"><b>8]</b> Typing in so called index.pug file, which is in views folder with
+            demo.pug file.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language">
+    app.get("/", (req, res) => {
+        const content = `This is the best content ever found on the internet`;
+        const title = `Title is the best`;
+        const params = {'title': title, 'content': content};
+        res.status(200).render('index.pug', params);
+    });</code>
+    </pre>
+        <hr>
+
+
+        <p style="margin-top: 40px;"><b>9]</b> You can import the express material to pug by using #{nameofthevariable}
+        </p>
+        <pre class="prettyprint" style="background-color: #272822;">
+    <code class="language-html">
+    &lt;!DOCTYPE html>
+    &lt;html lang="en">
+    &lt;head>
+        &lt;meta charset="UTF-8">
+        &lt;meta http-equiv="X-UA-Compatible" content="IE=edge">
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0">
+        &lt;title>#{title}&lt;/title>
+    &lt;/head>
+    &lt;body>
+        #{content}
+        | This is a basic page using pug and express
+    &lt;/body>
+    &lt;/html></code>
+    </pre>
+
+        <hr>
+
+
+
+        <p style="margin-top: 40px;"><b>10]</b> If you have a form which literally takes data from the user and stores
+            it in a txt file, then you
+            should use the below code: The form method must be "post" and action be "/"</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-js">
+    app.use(express.urlencoded());
+    app.post("/", (req, res) => {
+        name = req.body.name; // an example of form field
+        age = req.body.age; // an example of form field
+        address = req.body.address; // an example of form field
+        gender = req.body.gender; // an example of form field
+        let output = `${name} was added successfully to the list. Client is ${age} years old. Address of the client is ${address}`;
+        fs.writeFileSync('output.txt', output);
+        const params = {'message': `The form was submitted successfully`};
+        res.status(200).render('index.pug', params);
+    });</code>
+    </pre>
+
+
+        <p style="margin-top: 40px;"><b>Basic form</b></p>
+        <pre class="prettyprint" style="background-color: #272822;">
+            <code class="language">
+    &lt;form action="/" method="post" id="form">
+        &lt;div>
+            &lt;input type="text" name="name" placeholder="Your name here">
+            &lt;input type="number" name="age" placeholder="Your age here">
+            &lt;input type="number" name="contact" placeholder="Your contact number here">
+            &lt;button id="btn">
+                Submit
+            &lt;/button>
+        &lt;/div>
+    &lt;/form></code>
+        </pre>
+
+        <p style="margin-top: 40px;"><b>Styling for the form</b></p>
+        <pre class="prettyprint" style="background-color: #272822;">
+            <code class="language-css">
+    #form div
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px #0000004d;
+        width: 40vw;
+        margin: 0 auto;
+        padding: 20px 0;
+    }
+    #form input 
+    {
+        border: none;
+        outline: none;
+        margin: 12px auto;
+        border-bottom: 1px solid gray;
+        width: 90%;
+    }
+    #btn
+    {
+        outline: none;
+        border: none;
+        padding: 10px 30px;
+        cursor: pointer;
+        position: relative;
+        margin: 20px 0;
+        background-color: #ffd280;
+    }</code>
+        </pre>
+
+
+    </div>
+
+
+
+    <div class="container" id="mongo">
+        <h2>MongoDB releated</h2>
+        <hr>
+
+        <div class="installations">
+            <ul>
+                <li>
+                    First of all, you need to install Mongo in your system. To download it <a
+                        href="https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-5.0.7-signed.msi">click
+                        here</a>. Download will start automatically after the click (around 288MB). </p>
+                </li>
+                <li>
+                    <p>After downloading Mongo, install it properly. Just uncheck the service providing option in the
+                        process.</p>
+                </li>
+                <li>
+                    <p>After completing the second step, get to your <b>"C Drive"</b> and create a folder named
+                        <b>"data"</b>. Inside data create a folder named <b>"db"</b>.
+                    </p>
+                </li>
+                <li>
+                    <p>Go to your <b>"C:\Program Files\MongoDB\Server\5.0\bin"</b>. Copy the path.</p>
+                </li>
+                <li>
+                    <p>Go to your <b>"Computer Properties" > "Advanced System Settings" > "Environment Variables..." >
+                            "Select <u>path</u> > "edit" > "new" > "Ctrl + V" > "Click on <u>Ok</u> at every step"</b>.
+                        It is properly installed if you followed correctly.</p>
+                </li>
+                <li>
+                    <p>Open your Powershell as an administrator and type "mongo". Let the process undergo. After it,
+                        type "mongod". Wait for a while and exit the Powershell.</p>
+                </li>
+            </ul>
+        </div>
+
+
+        <p style="margin-top: 70px;">
+        <h4 class="no__center">Basic commands in mongo ---- CRUD Operations</h4>
+        </p>
+        <p>
+        <h5 class="no__center" style="color: #ff3e3e;">Creating/Inserting data in mongo <i
+                class="fa-solid fa-file-circle-plus" style="color: black;"></i></h5>
+        </p>
+        <hr>
+        <p>To check the below code. Open two Powershells as an administrator. Type "mongod" in one of them and hit
+            "Enter". Type "mongo" in the other one and hit "Enter". Type the below code in the Powershell, in which you
+            have typed "mongo".</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+            <code class="language-console">
+    use thisDatabase
+    
+    db.items.insertOne({name: 'MacBook', price: '1.4L', quantity: 10, sold: 12})
+
+    db.items.insertMany([{}, {}, {}])
+
+    db.items.find()
+
+    show dbs</code>
+        </pre>
+        <p>The above first block of code will set "thisDatabase" as a new Database.</p>
+        <p>The second block of code will insert one item in the database.</p>
+        <p>Using the third block of code, you can literally put as many items as you want in the database.</p>
+        <p>The fourth block of code will help you to check all the items in the database.</p>
+        <p>The fifth block of code will help you to see all the databases.</p>
+
+
+
+
+        <p style="margin-top: 70px;">
+        <h5 style="color: #ff3e3e;">Read/Searching data in Mongo <i class="fa-solid fa-magnifying-glass"
+                style="color: #000;"></i></h5>
+        </p>
+        <hr>
+        <p class="my-4">The below code could be used to search simple documents in DataBase.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-console">
+    // This query will return all the documents with rating equals to 4.3
+    // db.items.find({filterObject})
+    db.items.find({rating: 4.3})</code>
+    </pre>
+
+
+        <p style="margin-top: 70px;">The below piece of code could be used to search complex documents in DataBase.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+    <code class="language-console">
+    db.items.find({rating: {$gte: 4.3}})
+</code>
+</pre>
+        <p>In the above code "gte" means <b><u>greater than or equal to</u></b></p>
+        <p>Similarly "lte" means <b><u>less than or equal to</u></b></p>
+        <p>Similarly "gt" means <b><u>greater than</u></b></p>
+        <p>Similarly "lt" means <b><u>less than</u></b></p>
+
+
+
+
+        <p style="margin-top: 70px;">The below piece of code could be used to search complex documents in DataBase.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+<code class="language-console">
+    db.items.find({rating: {$gte: 4.3}, price: {$gt: 4000}})
+</code>
+</pre>
+        <p>The "," here works as <b><u>and operator</u></b> in Mongo. It means, filter the objects having rating greater
+            than or equal to 4.3 and price greater than 4000.</p>
+
+
+
+
+
+        <pre class="prettyprint" style="background-color: #272822;">
+    <code class="language-console">
+    db.items.find({ $or:[{rating: {$gte: 4.3}}, {price: {$gt: 4000}}]})</code>
+    </pre>
+        <p>The "$or" here works as <b><u>or operator</u></b> in Mongo. It means, filter the objects having rating
+            greater
+            than or equal to 4.3 or price greater than 4000.</p>
+
+
+
+
+
+        <p style="margin-top: 70px;">
+        <h5 style="color: #ff3e3e;">Deleting data in Mongo <i class="fa-solid fa-trash" style="color: #000;"></i></i>
+        </h5>
+        </p>
+        <hr>
+        <p style="margin-top: 30px;">The below piece of code could be used to delete documents in DataBase.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+<code class="language-console">
+    db.items.deleteOne({price: 2000})
+</code>
+</pre>
+        <p>The above code deletes one item having the price of 2000, if there are multiple present.</p>
+
+
+
+        <p style="margin-top: 70px;">The below piece of code is for deleting all the documents having property = value.
+            Means (say) price: 3000.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+<code class="language-console">
+    db.items.deleteMany({price: 3000})
+</code>
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+        <p style="margin-top: 70px;">
+        <h5 style="color: #ff3e3e;">Updating data in Mongo <i class="fa-solid fa-file-pen" style="color: #000;"></i></i>
+        </h5>
+        </p>
+        <hr>
+        <p style="margin-top: 30px;">The below piece of code could be used to add/update documents in DataBase.</p>
+        <pre class="prettyprint" style="background-color: #272822;">
+<code class="language-console">
+    db.newCollection.insertOne({a: 619})
+</code>
+</pre>
+        <p>Here <b><u>newCollection</u></b> is just a random name, you could use any name.</p>
+
+
+        <p style="margin-top: 30px;">
+            To check the results, use the below code.
+        </p>
+        <pre class="prettyprint" style="background-color: #272822;">
+    <code class="language-console">
+    show collections
+</code>
+</pre>
+
+        <p style="margin-top: 30px;">
+            The below code could be used to change the specific value in the elements of the database. If you want to
+            change one item, use <b>updateOne({}, {$set{}})</b>, else use <b>updateMany({{}, {$set{}}}, {{},
+                {$set{}}})</b>.
+        </p>
+        <pre class="prettyprint" style="background-color: #272822;">
+<code class="language-console">
+    db.items.updateOne({name: "MacBook"}, {$set: {price: 1.2L}})
+</code>
+</pre>
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <div class="container" id="mongoose">
+        <h2>Mongoose releated</h2>
+        <h5>Many of the below process needs your terminal to be active, running <b><u>mongod</u></b> in it.</h5>
+        <hr>
+
+        <div class="my-5">
+            <p>Begin with installing <b>mongoose</b> in the terminal of VS Code.</p>
+            <pre class="prettyprint" style="background-color: #272822;">
+                <code class="language-console">
+    $ npm install mongoose
+</code>
+</pre>
+
+<div class="my-5">
+    <p>Add the below code to your js file.</p>
+<pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-js">
+    const mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost:27017/test', {userNewUrlParser: true, userUnifiedTopology: true});
+</code>
+</pre>    
+</div>
+
+
+
+
+
+
+<div class="my-5">
+    <p>Add the below to setup a connection.</p>
+<pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-js">
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function(){
+        console.log("We are connected!");
+    });
+</code>
+</pre>  
+
+
+
+
+
+
+<div class="my-5">
+    <p>If the above code doesn't work, could happen in some cases, then use the below one.</p>
+<pre class="prettyprint" style="background-color: #272822;">
+        <code class="language-js">
+    const mongoose = require('mongoose');
+    mongoose.connect('mongodb://localhost:27017/HarshalKart');  // HarshalKart can be replaced with the name of your database.
+    
+    var db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error:'));
+    db.once('open', function(){
+        console.log("We are connected!");
+    });
+</code>
+</pre>    
+</div>
+        </div>
+    </div>
+    <h3 class="my-5">You did it. Have fun! 😎</h3>
+
+    <br>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2Q<u>OK</u>9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+#navFirst
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+}
+.mainBg
+{
+    height: 39vh;
+    background: #383a38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.mainBgFull
+{
+    height: 100vh;
+    background: #383a38;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.heading
+{
+    color: #999;
+}
+
+.mainBg h4
+{
+    color: #999;
+    font-size: 17px;
+    text-align: center;
+}
+
+ul li
+{
+    line-height: 30px;
+}
+h3
+{
+    text-align: center;
+}
+
+@media(max-width: 700px){
+    .container
+    {
+        width: 90%;
+    }
+    .mainBg h4
+    {
+        font-size: 12px;
+    }
+    .buttonsLinks
+    {
+        display: flex;
+        flex-direction: column;
+    }
+    .buttonsLinks a 
+    {
+        margin: 10px 0;
+    }
+    .mainBg
+    {
+        height: auto;
+        padding: 70px 0;
+    }
+}
+
+.no__center
+{
+    text-align: left;
+}
+
+p
+{
+    font-size: 18px;
+}
+
+#mongo
+{
+    margin-top: 90px;
+}
+
+
+#mongoose
+{
+    margin-top: 80px;
+}
